@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Chimbu Province - The Heart of Papua New Guinea</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;600&display=swap');
+
+        :root {
+            --primary-color: #2c5b3d; /* Deep Forest Green */
+            --secondary-color: #d4af37; /* Gold/Ochre */
+            --accent-color: #c04000; /* Rich Earth Red */
+            --text-color: #333333;
+            --bg-color: #fdfdfd;
+            --light-gray: #f0f0f0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header & Navigation */
+        .main-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.pagahill.com/wp-content/uploads/2019/03/3d38ab2354be02ffc10d62a546f2d857-600x400.jpg') no-repeat center center/cover;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Header height */
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Lora', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Lora', serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Welcome Section */
+        #welcome {
+            background: var(--bg-color);
+        }
+        
+        .welcome-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .welcome-content h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Attractions Section */
+        #attractions {
+            background: var(--light-gray);
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .attraction-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .attraction-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .attraction-content {
+            padding: 1.5rem;
+        }
+
+        .attraction-content h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Culture Section */
+        .culture-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .culture-text h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .culture-image-container {
+            position: relative;
+        }
+        
+        .culture-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Travel Guide Section */
+        #guide {
+            background: var(--light-gray);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .guide-card {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .guide-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .guide-card h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary-color);
+            color: var(--light-gray);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-content h3 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-content p {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #4a7c5d;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px; /* Header height */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .culture-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#hero" class="logo">Chimbu Province<span>.</span></a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#welcome" class="nav-link">Welcome</a></li>
+                    <li><a href="#attractions" class="nav-link">Attractions</a></li>
+                    <li><a href="#culture" class="nav-link">Culture</a></li>
+                    <li><a href="#guide" class="nav-link">Travel Guide</a></li>
+                </ul>
+                <div class="menu-toggle" id="menu-toggle">
+                    &#9776; <!-- Hamburger Icon -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>Discover Chimbu Province</h1>
+                <p>Venture into the rugged heart of Papua New Guinea, a land of soaring peaks, vibrant traditions, and unforgettable adventures.</p>
+                <a href="#attractions" class="btn">Explore Now</a>
+            </div>
+        </section>
+
+        <section class="section" id="welcome">
+            <div class="container">
+                <div class="welcome-content">
+                    <div class="section-header">
+                        <h2>Welcome to the Land of the Unexpected</h2>
+                    </div>
+                    <h3>A journey to the roof of Papua New Guinea</h3>
+                    <p>Nestled in the dramatic central highlands, Chimbu (or Simbu) Province is a realm of breathtaking beauty and ancient cultures. Home to Mount Wilhelm, the nation's highest peak, Chimbu offers a raw, authentic experience for the intrepid traveler. From its colorful "singsing" festivals to its challenging mountain treks, this is a place where nature's grandeur and human resilience are on full display. Prepare to be captivated by the spirit of Chimbu.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="attractions">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What to See & Do</h2>
+                    <p>From majestic mountains to winding rivers, adventure awaits.</p>
+                </div>
+                <div class="attractions-grid">
+                    <div class="attraction-card">
+                        <img src="https://www.journeyera.com/wp-content/uploads/2019/11/mount-wilhelm-trek-papua-new-guinea-00861.jpg" alt="Mount Wilhelm">
+                        <div class="attraction-content">
+                            <h3>Climb Mount Wilhelm</h3>
+                            <p>Embark on the ultimate challenge: a trek to the 4,509-metre summit of Papua New Guinea's highest mountain. Witness stunning alpine scenery and unforgettable sunrises.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card">
+                        <img src="https://destinationsmagazine.com/wp-content/uploads/2018/11/png-chimbu-tribe-001.jpg" alt="Cultural Festival">
+                        <div class="attraction-content">
+                            <h3>Experience a "Singsing"</h3>
+                            <p>Immerse yourself in the vibrant culture at a traditional gathering. Marvel at the intricate body paint, elaborate headdresses, and rhythmic dances of the Chimbu people.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card">
+                        <img src="https://wwfint.awsassets.panda.org/img/original/web_112725.jpg" alt="River">
+                        <div class="attraction-content">
+                            <h3>Explore the Waghi Valley</h3>
+                            <p>Discover the lush, fertile Waghi Valley, known for its coffee and tea plantations. Enjoy the scenic drives and learn about the local agriculture that sustains the region.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="culture">
+            <div class="container">
+                <div class="section-header">
+                    <h2>The Heartbeat of the Highlands</h2>
+                    <p>Discover a culture woven from ancient stories and traditions.</p>
+                </div>
+                <div class="culture-content">
+                    <div class="culture-image-container">
+                        <img src="https://d22ku65k4a4snt.cloudfront.net/1375BF96B/C5I28lOOA6BZ/aflo_242402840.jpg">
+                    </div>
+                    <div class="culture-text">
+                        <h3>A Rich Tapestry of Life</h3>
+                        <p>The people of Chimbu are renowned for their resilience and deep connection to their land. Their culture is expressed through powerful oral histories, intricate craftsmanship, and the famous skeleton dancers, whose striking body paint mimics the dead and represents ancestral spirits.</p>
+                        <p>Visiting a local village offers a profound insight into a way of life that has been preserved for centuries. Engage with local artisans, listen to the stories of the elders, and gain a deeper appreciation for the enduring spirit of the Highlands people.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="guide">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Plan Your Adventure</h2>
+                    <p>Essential tips for your journey to Chimbu Province.</p>
+                </div>
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <div class="guide-icon">&#9924;</div> <!-- Mountain Icon -->
+                        <h3>Best Time to Visit</h3>
+                        <p>The dry season, from May to October, is ideal for trekking and outdoor activities, offering clearer skies and more manageable trails.</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-icon">&#128747;</div> <!-- Airplane Icon -->
+                        <h3>Getting There</h3>
+                        <p>Fly into Goroka (GKA) or Mount Hagen (HGU) and travel by road to Kundiawa, the provincial capital. Hiring a local guide and vehicle is highly recommended.</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-icon">&#127960;</div> <!-- House Icon -->
+                        <h3>Where to Stay</h3>
+                        <p>Accommodations range from guesthouses in Kundiawa to rustic lodges near Mount Wilhelm. Booking in advance is essential, especially during peak season.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Moments from Chimbu</h2>
+                    <p>A glimpse into the stunning landscapes and vibrant life of the province.</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://www.travelmarbles.com/wp-content/uploads/2016/08/cover-copy-11.jpg"></div>
+                    <div class="gallery-item"><img src="https://encyclopedia.pub/media/common/202211/mceclip0-636b26f91058e.png"></div>
+                    <div class="gallery-item"><img src="https://destinationsmagazine.com/wp-content/uploads/2018/11/PNG-Faces-2.jpg"></div>
+                    <div class="gallery-item"><img src="https://s3.amazonaws.com/www.explorersweb.com/wp-content/uploads/2020/04/24000638/pic1-1.jpg"></div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Your Adventure Begins Here</h3>
+                <p>Chimbu is more than a destination; it's an experience that will stay with you forever. Start planning your journey into the heart of Papua New Guinea today.</p>
+                <a href="#hero" class="btn">Back to Top</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chimbu Tourism Website. All Rights Reserved. Website Design by Gideon Bika.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('main-header');
+            const navLinksContainer = document.getElementById('nav-links');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.8)';
+                }
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                navLinksContainer.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinksContainer.classList.contains('active')) {
+                        navLinksContainer.classList.remove('active');
+                    }
+                });
+            });
+
+            // Active link highlighting on scroll
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
